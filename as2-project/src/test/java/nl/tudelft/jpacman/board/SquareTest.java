@@ -65,4 +65,7 @@ public class SquareTest {
 		Object[] occupantsAsArray = square.getOccupants().toArray();
 		assertArrayEquals(new Object[] { o1, o2 }, occupantsAsArray);
 	}
+	
+	
+	
 }

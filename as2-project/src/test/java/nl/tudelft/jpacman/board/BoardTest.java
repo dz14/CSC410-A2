@@ -1,6 +1,5 @@
 package nl.tudelft.jpacman.board;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Before;
@@ -78,5 +77,9 @@ public class BoardTest {
 	@Test
 	public void verifyX0Y1() {
 		assertEquals(x0y1, board.squareAt(0, 1));
+	}
+	@Test
+	public void withinBorder(){
+		assertTrue(board.withinBorders(0,0));
 	}
 }

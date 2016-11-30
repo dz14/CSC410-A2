@@ -18,7 +18,6 @@ public class SpriteTest {
 
     private Sprite sprite;
     private SpriteStore store;
-    
     private static final int SPRITE_SIZE = 64;
 
     /**
@@ -108,4 +107,5 @@ public class SpriteTest {
 		Sprite split = sprite.split(10, 10, 64, 10);
 		assertTrue(split instanceof EmptySprite);
 	}
+	
 }
