@@ -6,7 +6,7 @@ package nl.tudelft.jpacman.board;
  * @author Jeroen Roosen 
  */
 public class Board {
-
+	
 	/**
 	 * The grid of squares with board[x][y] being the square at column x, row y.
 	 */
@@ -88,3 +88,5 @@ public class Board {
 	}
 
 }
+
+
