@@ -24,7 +24,7 @@ public class Board {
 		this.board = grid;
 		assert invariant() : "Initial grid cannot contain null squares";
 	}
-	
+
 	/**
 	 * Whatever happens, the squares on the board can't be null.
 	 * @return false if any square on the board is null.
@@ -86,4 +86,5 @@ public class Board {
 	public boolean withinBorders(int x, int y) {
 		return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
 	}
+
 }

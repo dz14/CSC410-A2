@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.board;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Before;
