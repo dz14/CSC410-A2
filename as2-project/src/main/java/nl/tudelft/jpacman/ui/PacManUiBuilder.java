@@ -24,6 +24,8 @@ public class PacManUiBuilder {
 	 */
 	private static final String START_CAPTION = "Start";
 
+	
+	private static final String PAUSE_CAPTION = "Pause";
 	/**
 	 * Map of buttons and their actions.
 	 */
@@ -66,6 +68,7 @@ public class PacManUiBuilder {
 		if (defaultButtons) {
 			addStartButton(game);
 			addStopButton(game);
+			addPauseButton(game);
 		}
 		return new PacManUI(game, buttons, keyMappings, scoreFormatter);
 	}
@@ -104,6 +107,25 @@ public class PacManUiBuilder {
 				game.start();
 			}
 		});
+	}
+	
+	/**
+	 * Adds a button with the caption {@value #PAUSE_CAPTION} that pauses the
+	 * game
+	 * 
+	 * @param game
+	 * 				The game to pause
+	 */
+	private void addPauseButton(final Game game){
+		assert game != null;
+		
+		buttons.put(PAUSE_CAPTION, new Action() {
+			@Override
+			public void doAction(){
+				game.getLevel().pause();
+			}
+		});
+			
 	}
 
 	/**

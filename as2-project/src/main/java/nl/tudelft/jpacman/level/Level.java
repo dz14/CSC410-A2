@@ -54,6 +54,11 @@ public class Level {
 	private boolean inProgress;
 
 	/**
+	 * <code>true</code> iff this level is paused, i.e. ghosts cannot move
+	 */
+	private boolean isPaused;
+	
+	/**
 	 * The squares from which players can start this game.
 	 */
 	private final List<Square> startSquares;
@@ -98,6 +103,7 @@ public class Level {
 
 		this.board = b;
 		this.inProgress = false;
+		this.isPaused = false;
 		this.npcs = new HashMap<>();
 		for (NPC g : ghosts) {
 			npcs.put(g, null);
@@ -223,6 +229,23 @@ public class Level {
 	}
 
 	/**
+	 * Stops and resumes this level, stopping only ghost movement on the board
+	 */
+	public void pause(){
+		synchronized (startStopLock){
+			if (isPaused()){
+				startNPCs();
+				isPaused = false;
+			}
+			else{
+				stopNPCs();
+				isPaused = true;
+			}
+		}
+	}
+	
+	
+	/**
 	 * Starts all NPC movement scheduling.
 	 */
 	private void startNPCs() {
@@ -239,7 +262,7 @@ public class Level {
 	 * Stops all NPC movement scheduling and interrupts any movements being
 	 * executed.
 	 */
-	private void stopNPCs() {
+	public void stopNPCs() {
 		for (Entry<NPC, ScheduledExecutorService> e : npcs.entrySet()) {
 			e.getValue().shutdownNow();
 		}
@@ -255,6 +278,16 @@ public class Level {
 		return inProgress;
 	}
 
+	/**
+	 * Returns whether the level is paused, i.e. whether the ghosts cannot move
+	 * but everything else does
+	 * 
+	 * @return <code>true</code> iff this level is paused.
+	 */
+	public boolean isPaused(){
+		return isPaused;
+	}
+	
 	/**
 	 * Updates the observers about the state of this level.
 	 */
