@@ -2,7 +2,7 @@
 target = nl.tudelft.jpacman.board.BoardSPF
 classpath=./target/classes
 
-symbolic.method= nl.tudelft.jpacman.board.Board.withinBorders(sym#con)
+symbolic.method= nl.tudelft.jpacman.board.Board.withinBorders(sym#sym)
 # listener to print information: PCs, test cases 
 listener = gov.nasa.jpf.symbc.SymbolicListener
 # The following JPF options are usually used for SPF as well: 
