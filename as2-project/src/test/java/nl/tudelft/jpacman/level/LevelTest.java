@@ -6,6 +6,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Map.Entry;
+import java.util.concurrent.ScheduledExecutorService;
+
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.NPC;
@@ -101,6 +105,52 @@ public class LevelTest {
 		level.stop();
 		assertFalse(level.isInProgress());
 	}
+	
+	/**
+	 * Validates the state of the level when it is started then freezes.
+	 */
+	@Test
+	public void pause() {
+		level.start();
+		level.pause();
+		assertFalse(!level.isPaused());
+	}
+	
+	/**
+	 * Validates the state of the level when it is started then freezes, and then unfreezes.
+	 */
+	@Test
+	public void unpause() {
+		level.start();
+		level.pause();
+		level.pause();
+		assertFalse(level.isPaused());
+	}
+	
+	/**
+	 * Validates the state of the level when it is started then freezes, but the game is still in progress
+	 */
+	@Test
+	public void frozen_inprogress() {
+		level.start();
+		level.pause();
+		assertFalse(!level.isInProgress());
+	}
+	
+	
+	/**
+	 * Validates the state of the level when it is started,frozen and then unfrozen, and the game is still in progress
+	 */
+	@Test
+	public void unfrozen_inprogress() {
+		level.start();
+		level.pause();
+		level.pause();
+		assertFalse(!level.isInProgress());
+	}
+	
+	
+	
 
 	/**
 	 * Verifies registering a player puts the player on the correct starting
