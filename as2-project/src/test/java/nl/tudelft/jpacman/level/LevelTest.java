@@ -113,7 +113,7 @@ public class LevelTest {
 	public void pause() {
 		level.start();
 		level.pause();
-		assertFalse(!level.isPaused());
+		assertTrue(level.isPaused());
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class LevelTest {
 	public void frozen_inprogress() {
 		level.start();
 		level.pause();
-		assertFalse(!level.isInProgress());
+		assertTrue(level.isInProgress());
 	}
 	
 	
@@ -146,7 +146,7 @@ public class LevelTest {
 		level.start();
 		level.pause();
 		level.pause();
-		assertFalse(!level.isInProgress());
+		assertTrue(level.isInProgress());
 	}
 	
 	
