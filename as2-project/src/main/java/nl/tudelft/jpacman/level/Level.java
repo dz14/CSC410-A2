@@ -269,7 +269,6 @@ public class Level {
 	public void stopNPCs() {
 		for (Entry<NPC, ScheduledExecutorService> e : npcs.entrySet()) {
 			e.getValue().shutdownNow();
-			System.out.println(e.getValue().isShutdown());
 		}
 	}
 
