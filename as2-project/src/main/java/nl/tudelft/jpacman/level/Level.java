@@ -165,6 +165,10 @@ public class Level {
 	public Board getBoard() {
 		return board;
 	}
+	
+	public Map<NPC, ScheduledExecutorService> getNCPS(){
+		return this.npcs;
+	}
 
 	/**
 	 * Moves the unit into the given direction if possible and handles all
@@ -265,8 +269,11 @@ public class Level {
 	public void stopNPCs() {
 		for (Entry<NPC, ScheduledExecutorService> e : npcs.entrySet()) {
 			e.getValue().shutdownNow();
+			System.out.println(e.getValue().isShutdown());
 		}
 	}
+
+
 
 	/**
 	 * Returns whether this level is in progress, i.e. whether moves can be made

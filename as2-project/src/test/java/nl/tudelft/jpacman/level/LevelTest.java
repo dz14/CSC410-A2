@@ -149,6 +149,33 @@ public class LevelTest {
 		assertTrue(level.isInProgress());
 	}
 	
+	/**
+	 * Validates that startNPC starts all ghosts movement when the game is unpaused (unfrozen)
+	 */
+	@Test
+	public void startNPCTest() {
+		level.start();
+		level.pause();
+		level.pause();
+		for (Entry<NPC, ScheduledExecutorService> e : level.getNCPS().entrySet()) {
+			assertFalse(e.getValue().isShutdown());
+		}
+	}
+	
+
+	/**
+	 * Validates that stopNPC stops all ghosts movement when the game is paused (frozen)
+	 */
+	@Test
+	public void stopNPCTest() {
+		level.start();
+		level.pause();
+		for (Entry<NPC, ScheduledExecutorService> e : level.getNCPS().entrySet()) {
+			assertTrue(e.getValue().isShutdown());
+		}
+	}
+	
+	
 	
 	
 
